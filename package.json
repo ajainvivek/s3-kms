@@ -5,6 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/",
+    "start:infra": "./localstack/scripts/compose.sh up -d",
+    "destroy:infra": "./localstack/scripts/compose.sh down --rmi local --volumes --remove-orphans",
     "lint": "eslint src/**",
     "lint:fix": "eslint src/** --fix",
     "pretest": "npm run lint",

@@ -1,0 +1,25 @@
+
+version: '3'
+
+services:
+    localstack:
+        image: localstack/localstack:latest
+        ports:
+            - 4572:4572
+        volumes:
+            - $PROJECT_ROOT/localstack:/docker-entrypoint-initaws.d
+            - $PROJECT_ROOT/src:/src
+        environment:
+            - SERVICES=s3
+            - HOSTNAME_EXTERNAL=localstack
+            - DEBUG=1
+    localstack-setup:
+      build:
+        dockerfile: './Dockerfile.localstack'
+        context: '.'
+      volumes:
+            - $PROJECT_ROOT/src:/src
+      environment:
+        - AWS_ACCESS_KEY_ID=id
+        - AWS_SECRET_ACCESS_KEY=secret
+        - AWS_DEFAULT_REGION=us-west-2

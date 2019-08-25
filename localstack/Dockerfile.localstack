@@ -1,0 +1,9 @@
+FROM ioben/alpine-awscli:latest
+
+RUN mkdir /app
+
+WORKDIR /app
+
+COPY ["./scripts/setup.sh", "/app"]
+
+CMD ./setup.sh
