@@ -6,8 +6,8 @@ Download all objects in a given S3 bucket recursively and save them locally, mai
 
 - [x] Add prettier, eslint
 - [x] Add jest for unit test
-- [ ] Add aws-cli, bluebird
-- [ ] Setup AWS infrastructure (S3 + KMS)
+- [x] Add aws-sdk, bluebird
+- [x] Setup AWS infrastructure (S3 + KMS)
 - [ ] Setup localstack for local AWS environment
 - [ ] Draft initial implementation
 - [ ] Unit + Integration tests

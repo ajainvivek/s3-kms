@@ -26,5 +26,9 @@
     "eslint-plugin-jest": "^22.2.2",
     "prettier": "^1.16.4",
     "jest": "^24.1.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.517.0",
+    "bluebird": "^3.5.5"
   }
 }
