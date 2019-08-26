@@ -25,7 +25,8 @@ npm run test
 
 ## Local AWS Infrastructure Setup
 
-Spins up local AWS infrastructure via localstack along with initial setup 
+Spins up local AWS infrastructure via localstack along with S3 + KMS bootstrap
+Refer `/localstack/scripts/setup.sh` for  bootstrap
 
 ```
 npm run start:infra
@@ -42,7 +43,7 @@ npm run destroy:infra
 - [x] Add prettier, eslint
 - [x] Add jest for unit test
 - [x] Add aws-sdk, bluebird
-- [x] Setup AWS infrastructure (S3 + KMS)
+- [x] Setup AWS infrastructure (S3 + SSE KMS Encyption with CMK)
 - [x] Setup localstack for local AWS environment
 - [ ] Draft initial implementation
 - [ ] Unit + Integration tests
