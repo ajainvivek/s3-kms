@@ -28,8 +28,18 @@ const listObjects = async bucket => {
         Bucket: bucket,
       })
       .promise();
-    const objects = await listObjectsV2;
-    return objects;
+    const { IsTruncated, Contents } = await listObjectsV2;
+
+    if (IsTruncated) {
+      logger.warn('Skipped handling truncated files!!');
+    }
+    // filter key & etag
+    return Contents.map(content => {
+      return {
+        key: content.Key,
+        etag: content.Etag,
+      };
+    });
   } catch (err) {
     logger.error(
       {
