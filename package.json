@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/",
+    "start:download": "babel-node -e 'require(\"./src/index.js\").copyS3Bucket()'",
     "start:infra": "./localstack/scripts/compose.sh up -d",
     "destroy:infra": "./localstack/scripts/compose.sh down --rmi local --volumes --remove-orphans",
     "lint": "eslint src/**",
@@ -17,7 +17,9 @@
   "author": "Ajain Vivek",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "babel-jest": "^24.9.0",
     "eslint": "^5.14.1",
@@ -35,6 +37,7 @@
   "dependencies": {
     "aws-sdk": "^2.517.0",
     "bluebird": "^3.5.5",
-    "bunyan": "^1.8.12"
+    "bunyan": "^1.8.12",
+    "dotenv": "^8.1.0"
   }
 }

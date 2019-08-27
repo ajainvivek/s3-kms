@@ -25,8 +25,8 @@ npm run test
 
 ## Local AWS Infrastructure Setup
 
-Spins up local AWS infrastructure via localstack along with S3 + KMS bootstrap
-Refer `/localstack/scripts/setup.sh` for  bootstrap
+- Spins up local AWS infrastructure via localstack along with S3 + KMS bootstrap
+- Refer `/localstack/scripts/setup.sh` for  bootstrap
 
 ```
 npm run start:infra
@@ -36,6 +36,14 @@ Destroys the local AWS infrastructure
 
 ```
 npm run destroy:infra
+```
+
+## Execute 
+
+- Download S3 files recursively & download to the local machine
+
+```
+npm run start:download
 ```
  
 ## TODO

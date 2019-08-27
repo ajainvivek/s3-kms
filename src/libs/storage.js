@@ -1,25 +1,44 @@
 import AWS from 'aws-sdk';
+import logger from './../utils/logger';
+import config from './../config';
 
-AWS.config = new AWS.Config();
-AWS.config.accessKeyId = process.env.AWS_ACCESS_KEY_ID;
-AWS.config.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
-AWS.config.region = process.env.AWS_REGION;
-AWS.config.apiVersions = {
-  s3: '2006-03-01',
+AWS.config = new AWS.Config({
+  accessKeyId: config.awsAccessKeyId,
+  secretAccessKey: config.awsSecretAccessKey,
+  region: config.awsRegion,
+  setPromisesDependency: require('bluebird'),
+});
+
+const s3 = new AWS.S3(config.awsS3Config);
+
+/**
+ * Download objects from S3
+ */
+const downloadObject = async () => {
+  // TODO: s3.getObject
 };
 
-// const s3 = new AWS.S3().describeInstances();
+/**
+ * List objects from S3
+ */
+const listObjects = async bucket => {
+  try {
+    const listObjectsV2 = s3
+      .listObjectsV2({
+        Bucket: bucket,
+      })
+      .promise();
+    const objects = await listObjectsV2;
+    return objects;
+  } catch (err) {
+    logger.error(
+      {
+        stack: err.stack,
+      },
+      'Failed to fetch objects'
+    );
+    throw err;
+  }
+};
 
-// /**
-//  * Download objects from S3
-//  */
-// const downloadObject = () => {
-//   // TODO: s3.getObject
-// };
-
-// /**
-//  * List objects from S3
-//  */
-// const listObjects = () => {
-//   // TODO: s3.listObjects
-// };
+export { downloadObject, listObjects };
