@@ -9,19 +9,18 @@ AWS.config = new AWS.Config({
   setPromisesDependency: require('bluebird'),
 });
 
-const s3 = new AWS.S3(config.awsS3Config);
-
 /**
  * Download objects from S3
  */
 const downloadObject = async () => {
-  // TODO: s3.getObject
+  return {};
 };
 
 /**
  * List objects from S3
  */
 const listObjects = async bucket => {
+  const s3 = new AWS.S3(config.awsS3Config);
   try {
     const listObjectsV2 = s3
       .listObjectsV2({
@@ -37,7 +36,7 @@ const listObjects = async bucket => {
     return Contents.map(content => {
       return {
         key: content.Key,
-        etag: content.Etag,
+        etag: content.ETag,
       };
     });
   } catch (err) {
