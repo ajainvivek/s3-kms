@@ -15,7 +15,7 @@ import config from './../config';
  * Download file from s3 key
  * @param {string} key s3 file key path
  */
-const downloadFile = async key => {
+export const _downloadFile = async key => {
   const filePath = getDirectoryFromPath(key);
   const tmpDir = `${getCWD()}/.tmp`;
   const fileDir = `${tmpDir}/${filePath}`;
@@ -30,7 +30,7 @@ const downloadFile = async key => {
  */
 export const execute = async () => {
   try {
-    const objects = await listObjects('az-normal-bucket');
+    const objects = await listObjects(config.incomingBucket);
 
     // Promise.all without any concurrency
     // const files = [];
@@ -40,10 +40,10 @@ export const execute = async () => {
     // Promise.all(files);
     // Measurements: 33.30, 29.35, 30.35
 
-    Promise.map(
+    return Promise.map(
       objects,
       object => {
-        return downloadFile(object.key);
+        return _downloadFile(object.key);
       },
       {
         concurrency: parseFloat('Infinity'),
