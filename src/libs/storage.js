@@ -1,6 +1,8 @@
 import AWS from 'aws-sdk';
 import logger from './../utils/logger';
 import config from './../config';
+import Promise from 'bluebird';
+import { measure } from './../utils/metrics';
 
 AWS.config = new AWS.Config({
   accessKeyId: config.awsAccessKeyId,
@@ -12,8 +14,27 @@ AWS.config = new AWS.Config({
 /**
  * Download objects from S3
  */
-const downloadObject = async () => {
-  return {};
+const downloadObject = async (bucket, key, file) => {
+  const s3 = new AWS.S3(config.awsS3Config);
+
+  return new Promise((resolve, reject) => {
+    s3.getObject({
+      Bucket: bucket,
+      Key: key,
+    })
+      .createReadStream()
+      .on('end', () => resolve())
+      .on('error', err => {
+        logger.error(
+          {
+            stack: err.stack,
+          },
+          'Failed to download file'
+        );
+        return reject(err);
+      })
+      .pipe(file);
+  });
 };
 
 /**

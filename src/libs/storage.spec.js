@@ -2,7 +2,7 @@ jest.mock('aws-sdk');
 
 const AWS = require('aws-sdk');
 
-let s3Promise = jest.fn().mockReturnValue({
+let s3ValidBucketPromise = jest.fn().mockReturnValue({
   promise: jest.fn().mockResolvedValue({
     IsTruncated: false,
     Contents: [
@@ -24,7 +24,7 @@ let s3Promise = jest.fn().mockReturnValue({
   }),
 });
 
-const s3InvalidPromise = jest.fn().mockReturnValue({
+const s3InvalidBucketPromise = jest.fn().mockReturnValue({
   promise: jest.fn().mockRejectedValue({
     message: 'The specified bucket does not exist',
     code: 'NoSuchBucket',
@@ -40,7 +40,7 @@ const s3InvalidPromise = jest.fn().mockReturnValue({
 });
 
 AWS.S3 = jest.fn().mockImplementation(() => ({
-  listObjectsV2: s3Promise,
+  listObjectsV2: s3ValidBucketPromise,
 }));
 
 AWS.Config = jest.fn();
@@ -75,7 +75,7 @@ describe('Storage', () => {
   it('should throw error if invalid bucket name is passed', async () => {
     expect.assertions(1);
     AWS.S3 = jest.fn().mockImplementation(() => ({
-      listObjectsV2: s3InvalidPromise,
+      listObjectsV2: s3InvalidBucketPromise,
     }));
     const expected = {
       message: 'The specified bucket does not exist',
