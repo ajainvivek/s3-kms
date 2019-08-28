@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import Promise from 'bluebird';
 import logger from './../utils/logger';
+import readdir from 'recursive-readdir';
 
 const mkdir = Promise.promisify(fs.mkdir);
 
@@ -33,4 +34,9 @@ export const getDirectoryFromPath = filePath => {
 // Get file from path
 export const getBaseName = filePath => {
   return path.basename(filePath);
+};
+
+// Get files from dir path
+export const getFiles = dirPath => {
+  return fs.existsSync(dirPath) ? readdir(dirPath) : [];
 };

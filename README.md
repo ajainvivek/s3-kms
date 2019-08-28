@@ -68,6 +68,8 @@ Fast  Promise.map(Infinity)  27.34 sec/62kb   3 samples
 - [x] Setup AWS infrastructure (S3 + SSE KMS Encyption with CMK)
 - [x] Setup localstack for local AWS environment
 - [x] Copy files recursively on local machine from S3
+- [x] Unit tests for copy files
+- [x] Performance benchmark tests for copy
 - [ ] Upload the files to S3 using SSE with KMS
-- [ ] Unit + Integration tests
-- [ ] Performance, stress testing
+- [ ] Unit test for upload files
+- [ ] Performance benchmark tests for upload

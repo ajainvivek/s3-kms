@@ -43,6 +43,7 @@
     "aws-sdk": "^2.517.0",
     "bluebird": "^3.5.5",
     "bunyan": "^1.8.12",
-    "dotenv": "^8.1.0"
+    "dotenv": "^8.1.0",
+    "recursive-readdir": "^2.2.2"
   }
 }
