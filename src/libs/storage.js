@@ -2,7 +2,6 @@ import AWS from 'aws-sdk';
 import logger from './../utils/logger';
 import config from './../config';
 import Promise from 'bluebird';
-import { measure } from './../utils/metrics';
 
 AWS.config = new AWS.Config({
   accessKeyId: config.awsAccessKeyId,

@@ -55,8 +55,9 @@ These tests have been ran and reported on Mac OSX v10.14.5 15 inch 2.8 GHz Intel
 ```js
 ====================== sortBy ======================
 Slow  Promise.all            31 sec/62kb      3 samples
-      Promise.map(Infinity)  27.34 sec/62kb   3 samples
-Fast  Promise.map(3)         29.29 sec/62kb   3 samples
+      Promise.map(3)         29.29 sec/62kb   3 samples
+Fast  Promise.map(Infinity)  27.34 sec/62kb   3 samples
+
 ```
 
 ## TODO

@@ -39,15 +39,24 @@ const s3InvalidBucketPromise = jest.fn().mockReturnValue({
   }),
 });
 
-AWS.S3 = jest.fn().mockImplementation(() => ({
-  listObjectsV2: s3ValidBucketPromise,
-}));
-
-AWS.Config = jest.fn();
+const s3GetObject = jest.fn().mockReturnValue({
+  createReadStream: jest.fn().mockReturnValue({
+    on: jest.fn().mockReturnValue({
+      on: jest.fn().mockReturnValue({
+        pipe: jest.fn(),
+      }),
+    }),
+  }),
+});
 
 describe('Storage', () => {
   let storage;
   beforeEach(() => {
+    AWS.S3 = jest.fn().mockImplementation(() => ({
+      listObjectsV2: s3ValidBucketPromise,
+      getObject: s3GetObject,
+    }));
+    AWS.Config = jest.fn();
     storage = require('./storage');
   });
 
@@ -94,5 +103,12 @@ describe('Storage', () => {
     } catch (err) {
       expect(err).toEqual(expected);
     }
+  });
+
+  it('should get object and write to stream', async () => {
+    expect.assertions(1);
+
+    storage.downloadObject('key');
+    expect(s3GetObject).toHaveBeenCalled();
   });
 });
