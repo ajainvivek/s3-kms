@@ -1,13 +1,12 @@
 import { performance, PerformanceObserver } from 'perf_hooks';
 import logger from './logger';
-import config from './../config';
 
 /**
  * Measures the running of he wrapper function
  * @param {Func} method to be measure
  */
-export const measure = method => {
-  if (config.enableMetrics) {
+export const measure = (method, enabled) => {
+  if (enabled) {
     const wrapped = performance.timerify(method);
 
     const obs = new PerformanceObserver(list => {

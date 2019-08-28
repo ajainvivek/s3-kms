@@ -63,4 +63,4 @@ export const execute = async () => {
 };
 
 // Measure method, if metrics is enabled
-measure(execute);
+measure(execute, config.enableMetrics);
