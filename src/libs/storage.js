@@ -2,6 +2,7 @@ import AWS from 'aws-sdk';
 import logger from './../utils/logger';
 import config from './../config';
 import Promise from 'bluebird';
+import fs from 'fs';
 
 AWS.config = new AWS.Config({
   accessKeyId: config.awsAccessKeyId,
@@ -70,4 +71,31 @@ const listObjects = async bucket => {
   }
 };
 
-export { downloadObject, listObjects };
+/**
+ * Upload file to S3
+ */
+const uploadFile = async (bucket, key, file) => {
+  const s3 = new AWS.S3(config.awsS3Config);
+  try {
+    const upload = s3
+      .upload({
+        Bucket: bucket,
+        Key: key,
+        Body: fs.readFileSync(file),
+      })
+      .promise();
+
+    const status = await upload;
+    return status;
+  } catch (err) {
+    logger.error(
+      {
+        stack: err.stack,
+      },
+      'Failed to upload file'
+    );
+    throw err;
+  }
+};
+
+export { downloadObject, listObjects, uploadFile };
