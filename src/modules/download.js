@@ -50,6 +50,7 @@ export const execute = async () => {
       }
     );
     // Measurements with concurrency infinity: 27.78, 26.68, 27.57
+    // Measurements with concurrency 3: 29.67, 29.46, 28.74
   } catch (err) {
     logger.error(
       {
