@@ -38,12 +38,38 @@ Destroys the local AWS infrastructure
 npm run destroy:infra
 ```
 
-## Execute 
+## How to run  
 
 - Download S3 files recursively & download to the local machine
 
 ```
 npm run start:download
+```
+
+- Upload files to KMS encrypted bucket 
+
+```
+npm run start:upload
+```
+
+## How to test
+
+- Copy `.env.sample` to `.env` for configuration
+- To test on AWS update the configuration file
+- To test on local machine, spin up local stack, follow infra commands above
+- Local infrastructure `localstack/scripts/setup.sh` comprises of the bootstrap script to run aws cli (Note: KMS is not supported in localstack)
+- Download & upload files has it's own script command
+
+## KMS with CMK
+
+- Create access policy to manage CMK & encrypt S3 objects
+- Create KMS key with the policy
+```
+    aws kms create-key --region us-west-2 --policy file://kms-policy.json
+```
+- Configure the S3 bucket SSE
+```
+    aws --region=us-west-2 --endpoint-url=http://localstack:4572 s3api put-bucket-encryption --bucket encrypted-bucket --server-side-encryption-confi
 ```
 
 ### Benchmark Tests
@@ -70,6 +96,6 @@ Fast  Promise.map(Infinity)  27.34 sec/62kb   3 samples
 - [x] Copy files recursively on local machine from S3
 - [x] Unit tests for copy files
 - [x] Performance benchmark tests for copy
-- [ ] Upload the files to S3 using SSE with KMS
-- [ ] Unit test for upload files
+- [x] Upload the files to S3 using SSE with KMS
+- [x] Unit test for upload files
 - [ ] Performance benchmark tests for upload
