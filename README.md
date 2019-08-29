@@ -27,6 +27,7 @@ npm run test
 
 - Spins up local AWS infrastructure via localstack along with S3 + KMS bootstrap
 - Refer `/localstack/scripts/setup.sh` for  bootstrap
+- Make sure `docker` is running on your local machine before spinning up localstack
 
 ```
 npm run start:infra
