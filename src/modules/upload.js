@@ -3,6 +3,7 @@ import { uploadFile } from '../libs/storage';
 import Promise from 'bluebird';
 import shortid from 'shortid';
 import config from './../config';
+import { measure } from './../utils/metrics';
 
 // Upload file to S3
 export const _uploadFiles = files => {
@@ -25,3 +26,6 @@ export const execute = async () => {
   const files = await getFiles(tmpDir);
   return _uploadFiles(files);
 };
+
+// Measure method, if metrics is enabled
+measure(execute, config.enableMetrics);

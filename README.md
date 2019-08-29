@@ -86,6 +86,15 @@ Fast  Promise.map(Infinity)  27.34 sec/62kb   3 samples
 
 ```
 
+- Upload files from local to S3
+
+```js
+====================== sortBy ======================
+Slow  Promise.map(Infinity)     29.06 sec/62kb   6 samples
+      Promise.map(10)           28.40 sec/62kb   6 samples      
+Fast  Promise.map(3)            26.91 sec/62kb   6 samples
+```
+
 ## TODO
 
 - [x] Add prettier, eslint
@@ -98,4 +107,4 @@ Fast  Promise.map(Infinity)  27.34 sec/62kb   3 samples
 - [x] Performance benchmark tests for copy
 - [x] Upload the files to S3 using SSE with KMS
 - [x] Unit test for upload files
-- [ ] Performance benchmark tests for upload
+- [x] Performance benchmark tests for upload

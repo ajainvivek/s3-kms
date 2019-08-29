@@ -17,6 +17,15 @@ export const copyS3Bucket = () => {
 };
 
 // Upload directory to encrypted s3 bucket
-export const uploadDirToS3 = () => {
-  upload.execute();
+export const uploadDirToS3 = async () => {
+  try {
+    upload.execute();
+  } catch (err) {
+    logger.error(
+      {
+        stack: err.stack,
+      },
+      'Failed to upload to s3 bucket from local'
+    );
+  }
 };
