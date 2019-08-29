@@ -46,7 +46,7 @@ export const execute = async () => {
         return _downloadFile(object.key);
       },
       {
-        concurrency: parseFloat('Infinity'),
+        concurrency: parseFloat(config.downloadConcurrency),
       }
     );
     // Measurements with concurrency infinity: 27.78, 26.68, 27.57

@@ -10,7 +10,9 @@ const globals = {
     : '{}',
   enableMetrics: process.env.ENABLE_METRICS,
   incomingBucket: process.env.INCOMING_BUCKET,
-  outgoingBucket: process.env.OUTGOING_BUCCKET,
+  outgoingBucket: process.env.OUTGOING_BUCKET,
+  uploadConcurrency: process.env.UPLOAD_CONCURRENCY,
+  downloadConcurrency: process.env.DOWNLOAD_CONCURRENCY,
 };
 
 export default globals;
