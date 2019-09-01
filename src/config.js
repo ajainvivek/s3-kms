@@ -13,6 +13,7 @@ const globals = {
   outgoingBucket: process.env.OUTGOING_BUCKET,
   uploadConcurrency: process.env.UPLOAD_CONCURRENCY,
   downloadConcurrency: process.env.DOWNLOAD_CONCURRENCY,
+  localProjectFolder: process.env.LOCAL_PROJECT_FOLDER,
 };
 
 export default globals;

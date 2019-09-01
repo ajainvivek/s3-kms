@@ -11,8 +11,9 @@
     "lint": "eslint src/**",
     "lint:fix": "eslint src/** --fix",
     "pretest": "npm run lint",
-    "test": "ENABLE_METRICS=false npm run clear:cache && jest src",
-    "test:single": "ENABLE_METRICS=false npm run clear:cache && jest --coverage --watchAll --testPathPattern=\"$npm_config_pattern\" --collectCoverageFrom src/**/*$npm_config_pattern*/*.{js} -u",
+    "test": "npm run clear:cache && ENABLE_METRICS=false jest src",
+    "test:integration": "npm run clear:cache && ENABLE_METRICS=false jest test/integration",
+    "test:single": "npm run clear:cache && ENABLE_METRICS=false jest --coverage --watchAll --testPathPattern=\"$npm_config_pattern\" --collectCoverageFrom src/**/*$npm_config_pattern*/*.{js} -u",
     "clear:cache": "jest --clearCache",
     "coverage": "jest --collectCoverageFrom=src/**.js --coverage src"
   },

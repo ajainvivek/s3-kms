@@ -10,6 +10,7 @@ const file = require('../libs/file');
 process.env = {
   OUTGOING_BUCKET: 'test',
   UPLOAD_CONCURRENCY: 1,
+  LOCAL_PROJECT_FOLDER: '/tmp',
 };
 
 describe('Upload module', () => {
@@ -53,6 +54,6 @@ describe('Upload module', () => {
     await upload.execute();
 
     expect(file.getCWD).toHaveBeenCalled();
-    expect(file.getFiles).toHaveBeenCalledWith(`${rootPath}/.tmp`);
+    expect(file.getFiles).toHaveBeenCalledWith(`${rootPath}/tmp`);
   });
 });

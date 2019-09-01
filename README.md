@@ -23,6 +23,7 @@ Run Tests
 
 ```
 npm run test
+npm run test:integration
 ```
 
 ## Local AWS Infrastructure Setup
@@ -113,4 +114,4 @@ Fast  Promise.map(3)            26.91 ms/op   6 samples
 - [x] Upload the files to S3 using SSE with KMS
 - [x] Unit test for upload files
 - [x] Performance benchmark tests for upload
-- [ ] Integration tests
+- [x] Integration tests
