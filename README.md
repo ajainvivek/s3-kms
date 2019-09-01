@@ -1,5 +1,7 @@
 # AWS S3 KMS Playground
 
+[![Build Status](https://travis-ci.org/ajainvivek/s3-kms.svg?branch=master)](https://travis-ci.org/ajainvivek/s3-kms)
+
 Download all objects in a given S3 bucket recursively and save them locally, maintain directory structure. Encrypt all downloaded objects using KMS with a user-defined CMK and upload them to a second S3 bucket.
 
 ## Setting Up Local Codebase
@@ -77,23 +79,23 @@ npm run start:upload
 
 These tests have been ran and reported on Mac OSX v10.14.5 15 inch 2.8 GHz Intel Core i7
 
-- Copy files recursively on local machine 
+- Copy files recursively on local machine // dir size: 62kb
 
 ```js
 ====================== sortBy ======================
-Slow  Promise.all            31 sec/62kb      3 samples
-      Promise.map(3)         29.29 sec/62kb   3 samples
-Fast  Promise.map(Infinity)  27.34 sec/62kb   3 samples
+Slow  Promise.all            31 ms/op      3 samples
+      Promise.map(3)         29.29 ms/op   3 samples
+Fast  Promise.map(Infinity)  27.34 ms/op   3 samples
 
 ```
 
-- Upload files from local to S3
+- Upload files from local to S3 // dir size: 62kb
 
 ```js
 ====================== sortBy ======================
-Slow  Promise.map(Infinity)     29.06 sec/62kb   6 samples
-      Promise.map(10)           28.40 sec/62kb   6 samples      
-Fast  Promise.map(3)            26.91 sec/62kb   6 samples
+Slow  Promise.map(Infinity)     29.06 ms/op   6 samples
+      Promise.map(10)           28.40 ms/op   6 samples      
+Fast  Promise.map(3)            26.91 ms/op   6 samples
 ```
 
 ## TODO

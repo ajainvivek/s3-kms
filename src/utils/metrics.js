@@ -6,7 +6,7 @@ import logger from './logger';
  * @param {Func} method to be measure
  */
 export const measure = (method, enabled) => {
-  if (enabled) {
+  if (enabled === 'true') {
     const wrapped = performance.timerify(method);
 
     const obs = new PerformanceObserver(list => {

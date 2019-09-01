@@ -28,7 +28,6 @@ describe('Upload module', () => {
     expect.assertions(2);
     storage.uploadFile = jest.fn().mockResolvedValue(true);
     const mockFiles = ['/some/path/file.txt', '/some/file2.txt'];
-
     await upload._uploadFiles(mockFiles);
 
     expect(shortid.generate).toHaveBeenCalled();
@@ -41,7 +40,6 @@ describe('Upload module', () => {
     const mockFiles = ['/some/path/file.txt', '/some/file2.txt'];
 
     let totalPromises = await upload._uploadFiles(mockFiles);
-
     expect(totalPromises.length).toEqual(2);
   });
 
@@ -51,7 +49,6 @@ describe('Upload module', () => {
     const mockFiles = ['/some/path/file.txt', '/some/file2.txt'];
     file.getCWD = jest.fn().mockReturnValue(rootPath);
     file.getFiles = jest.fn().mockResolvedValue(mockFiles);
-    upload._uploadFiles = jest.fn();
 
     await upload.execute();
 
