@@ -58,6 +58,8 @@ npm run start:upload
 ## How to test
 
 - Copy `.env.sample` to `.env` for configuration
+- Recursively upload files from `localstack/sample/*` to S3
+- Copy downloaded files to `.tmp/*` 
 - To test on AWS update the configuration file
 - To test on local machine, spin up local stack, follow infra commands above
 - Local infrastructure `localstack/scripts/setup.sh` comprises of the bootstrap script to run aws cli (Note: KMS is not supported in localstack)
@@ -111,3 +113,4 @@ Fast  Promise.map(3)            26.91 ms/op   6 samples
 - [x] Upload the files to S3 using SSE with KMS
 - [x] Unit test for upload files
 - [x] Performance benchmark tests for upload
+- [ ] Integration tests
