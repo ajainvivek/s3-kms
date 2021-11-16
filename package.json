@@ -42,7 +42,7 @@
     "prettier": "^1.16.4"
   },
   "dependencies": {
-    "aws-sdk": "^2.517.0",
+    "aws-sdk": "^2.814.0",
     "bluebird": "^3.5.5",
     "bunyan": "^1.8.12",
     "dotenv": "^8.1.0",
